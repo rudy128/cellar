@@ -4,6 +4,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Separator } from './ui/separator'
 import { BookMarked, CircleCheckBig } from 'lucide-react'
+import Time from './Time'
 
 const NavBar = () => {
   return (
@@ -35,6 +36,7 @@ const NavBar = () => {
           </SheetContent>
         </Sheet>
         <div>Rudeus`s Cellar</div>
+        <Time />
         <div className='w-1/4 flex justify-evenly items-center'>
             <Link href={''}>Home</Link>
             <Link href={''}>About</Link>
