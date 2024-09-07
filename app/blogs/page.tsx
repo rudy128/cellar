@@ -1,33 +1,30 @@
-import NavBar from '@/components/NavBar'
-import { Checkbox } from '@/components/ui/checkbox'
-import { EllipsisVertical } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import BlogPosts from '@/components/BlogPosts';
+import NavBar from '@/components/NavBar';
+import NewBlog from '@/components/NewBlog';
+import { Button } from '@/components/ui/button';
+import { BookPlus, LucideMousePointerSquareDashed } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
-const page = () => {
-  return (
-    <div>
-        <NavBar />
-        <div className='w-full p-8 h-[95dvh]'>
-            <div className='bg-white/20 rounded-xl backdrop-blur-lg h-[90dvh]'>
-                <div className='flex justify-between p-8 items-center h-1/12 bg-white/5'>
-                    <Checkbox />
-                    <div>
-                        <h1>Lorem ipsum dolor sit amet.</h1>
-                        <h6>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, commodi.</h6>
-                    </div>
-                    <div>
-                        <div>Date</div>
-                        <div>Time</div>
-                    </div>
-                    <Link href={''} >
-                        <EllipsisVertical />
-                    </Link>
+const NewBlogPost = dynamic(()=> import('@/components/NewBlog'),{ssr:false})
+const BlogPost = dynamic(()=> import('@/components/BlogPosts'),{ssr:false})
+
+
+const Page = () => {
+
+    return (
+        <div>
+            <NavBar />
+            <div className='w-full flex h-[95dvh] py-4 space-x-8'>
+                <div className='max-w-[20%] min-h-full backdrop-blur-xl'>
+                    <NewBlogPost />
+                    <Link href={''}><Button className='w-full mb-4 rounded-r-xl space-x-2 bg-transparent hover:bg-white/10 text-white'><LucideMousePointerSquareDashed /><div>Draft</div></Button></Link>
                 </div>
+                <BlogPost />
             </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default page
+export default Page;

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
@@ -9,9 +9,11 @@ const LoginForm = () => {
   const router = useRouter();
   const [password, setPassword] = useState('');
 
-  if (localStorage.getItem('authToken')) {
-    router.push('/dashboard')
-  }
+  useEffect(() => {
+    if (localStorage.getItem('authToken')) {
+      router.push('/dashboard');
+    }
+  }, [router]);
 
   const handleOnSubmit = async (e : React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
@@ -25,10 +27,10 @@ const LoginForm = () => {
     });
 
     const result = await response.json();
-    
+    const expirationTime = new Date().getTime() + 7200 * 1000
     if (response.ok) {
       localStorage.setItem('authToken', result.token);
-      // console.log('Login Successful: ', result);
+      localStorage.setItem('expirationTime', expirationTime.toString());
       router.push('/dashboard');
     } else {
       console.error('Login Failed: ', result.error);

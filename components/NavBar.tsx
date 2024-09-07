@@ -4,11 +4,17 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 import { Separator } from './ui/separator'
 import { BookMarked, CircleCheckBig } from 'lucide-react'
-import Time from './Time'
+import dynamic from 'next/dynamic'
+
+const TimeComponent = dynamic(()=> import('./Time'),{ssr:false})
+
+const TokenChecker = dynamic(()=> import('./tokenChecker'),{ssr:false})
 
 const NavBar = () => {
+
   return (
     <div className='bg-orange-900/45 sticky top-0 left-0 z-20 backdrop-blur-md flex justify-between items-center w-full p-4 rounded-b-xl'>
+      <TokenChecker />
         <Sheet>
           <SheetTrigger><HamburgerMenuIcon /></SheetTrigger>
           <SheetContent className='space-y-8'>
@@ -36,7 +42,7 @@ const NavBar = () => {
           </SheetContent>
         </Sheet>
         <div>Rudeus`s Cellar</div>
-        <Time />
+        <TimeComponent />
         <div className='w-1/4 flex justify-evenly items-center'>
             <Link href={''}>Home</Link>
             <Link href={''}>About</Link>
