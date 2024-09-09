@@ -1,13 +1,16 @@
-import { Book, BookMarked } from 'lucide-react'
-import Link from 'next/link'
+import { Inter } from 'next/font/google';
 import React from 'react'
 
-const SideBar = () => {
+const inter = Inter({ subsets: ["latin"] });
+
+function SideBar({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div className='w-32 h-[95dvh] p-4'>
-        <Link href={''}>
-            <BookMarked />
-        </Link>
+    <div className={`max-w-[20%] min-h-full backdrop-blur-xl py-4 `}>
+      {children}
     </div>
   )
 }

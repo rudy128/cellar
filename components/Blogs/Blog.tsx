@@ -2,8 +2,8 @@
 import { BlogData } from '@/types/blog'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 
 const Blog = () => {
     const [data, setData] = useState<BlogData | null>(null)

@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Checkbox } from './ui/checkbox';
+import { Checkbox } from '../ui/checkbox';
 import Link from 'next/link';
 import { EllipsisVertical } from 'lucide-react';
 

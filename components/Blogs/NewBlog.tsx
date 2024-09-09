@@ -1,11 +1,12 @@
 'use client'
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from './ui/dialog'
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from '../ui/dialog'
 import React, { useEffect, useState } from 'react'
-import { DialogHeader } from './ui/dialog'
-import { Button } from './ui/button'
+import { DialogHeader } from '../ui/dialog'
+import { Button } from '../ui/button'
 import { BookPlus, Cross } from 'lucide-react'
-import { Input } from './ui/input'
-import { Cross1Icon, Cross2Icon } from '@radix-ui/react-icons'
+import { Input } from '../ui/input'
+import { Cross2Icon } from '@radix-ui/react-icons'
+import getRandomLightColor from '../colourgenerator'
 
 const NewBlog = () => {
     const [blogTitle, setBlogTitle] = useState('')
@@ -22,7 +23,7 @@ const NewBlog = () => {
 
     const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(event)
+        // console.log(event)
         const response = await fetch(`/api/blogs/newpost/`, {
             method: 'POST',
             body: JSON.stringify({title: blogTitle,badges:blogBadges,content:blogContent}),
@@ -31,16 +32,13 @@ const NewBlog = () => {
               'Authorization' : `Bearer ${sessionToken}`
             },
         })
+        window.location.reload()
     }
 
     const handleBadgeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBadgeInput(e.target.value)
     }
-    const randomColours = () => { // Add colours to badges
-        const colours: string[] = ['']
-        const rand = Math.floor(Math.random() * (colours.length))
-        return colours[rand]
-    }
+
     const handleBadgeInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === ',' || e.key === 'Enter') {
             e.preventDefault()
@@ -74,7 +72,7 @@ const NewBlog = () => {
         <DialogTrigger>
             <Button className='w-full mb-4 rounded-r-xl space-x-2 bg-transparent hover:bg-white/10 text-white'><BookPlus /><div>New Post</div></Button>
         </DialogTrigger>
-        <DialogContent className=''>
+        <DialogContent className='w-[75dvh] h-fit'>
             <DialogHeader className='mb-[5%]'>
                 <DialogTitle>New Blog Post</DialogTitle>
             </DialogHeader>
@@ -92,9 +90,9 @@ const NewBlog = () => {
                     onKeyDown={handleBadgeInputKeyDown}
                     placeholder='Type badges and press Enter or Comma'
                 />
-                <div className='flex space-x-4 mb-[3%]'>
+                <div className='flex flex-wrap gap-2 mb-[3%]'>
                     {blogBadges.map((badge, index) => (
-                        <button key={index} onClick={()=>handleBadgeClick(index)} className={`bg-background flex border rounded-3xl py-2 px-4 space-x-4`}>
+                        <button key={index} onClick={()=>handleBadgeClick(index)} style={{backgroundColor:getRandomLightColor()}} className={`text-background flex border rounded-3xl py-2 px-4 space-x-4`}>
                             <span className='rounded-full text-xs'>
                                 {badge}
                             </span>

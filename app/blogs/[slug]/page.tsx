@@ -1,4 +1,4 @@
-import Blog from '@/components/Blog'
+import Blog from '@/components/Blogs/Blog'
 import NavBar from '@/components/NavBar'
 import React from 'react'
 

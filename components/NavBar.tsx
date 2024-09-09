@@ -30,7 +30,7 @@ const NavBar = () => {
               <Separator />
             </div>
             <div>
-              <Link href={''} >
+              <Link href={'/tasks'} >
                 <SheetHeader>
                   <div className='flex'><CircleCheckBig size={30} className='mr-8'/>Tasks</div>
                   <br />

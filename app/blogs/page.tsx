@@ -1,14 +1,14 @@
-import BlogPosts from '@/components/BlogPosts';
+import BlogPosts from '@/components/Blogs/BlogPosts';
 import NavBar from '@/components/NavBar';
-import NewBlog from '@/components/NewBlog';
+import NewBlog from '@/components/Blogs/NewBlog';
 import { Button } from '@/components/ui/button';
 import { BookPlus, LucideMousePointerSquareDashed } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-const NewBlogPost = dynamic(()=> import('@/components/NewBlog'),{ssr:false})
-const BlogPost = dynamic(()=> import('@/components/BlogPosts'),{ssr:false})
+const NewBlogPost = dynamic(()=> import('@/components/Blogs/NewBlog'),{ssr:false})
+const BlogPost = dynamic(()=> import('@/components/Blogs/BlogPosts'),{ssr:false})
 
 
 const Page = () => {
